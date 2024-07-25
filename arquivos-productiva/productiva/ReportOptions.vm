@@ -1,0 +1,100 @@
+<script language="JavaScript" type="text/JavaScript">
+
+function setDefaultExportType()
+{
+	if (optionsForm.exportType.length)
+   	{
+ 		optionsForm.exportType[0].checked=true
+ 	}
+ 	else
+ 	{
+ 	    optionsForm.exportType.checked=true
+ 	}
+}
+
+function setBlankTarget()
+{	
+	optionsForm.target="_blank";		
+}
+
+function setNoTarget()
+{
+	optionsForm.target="";		
+}
+</script>
+
+#parse("Banner2.vm") 	
+
+#parse("Errors.vm")
+
+  <form action="reportOptions.action" name="optionsForm">  
+  
+  <div class="titulo_pagina" id="instructions" >
+	  Opções de Exportação para o Relatório $report.name
+  </div>
+
+  <table class="tabela_detalhe" >    
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+      <td class="boldText">Tipo de Arquivo de Exportação</td>   
+      #if ($report.pdfExportEnabled)
+      <td>
+       <input type="radio" name="exportType" value="0">PDF
+      </td>
+      #end
+      #if ($report.htmlExportEnabled)
+      <td>
+        <input type="radio" name="exportType" value="2">HTML
+      </td>
+      #end
+      #if ($report.csvExportEnabled)
+      <td>
+        <input type="radio" name="exportType" value="3">CSV      
+      </td>
+      #end
+      #if ($report.xlsExportEnabled || $report.jXLSReport)
+      <td>
+        <input type="radio" name="exportType" value="1">XLS
+      </td>
+      #end 
+      #if ($report.rtfExportEnabled)
+      <td>
+        <input type="radio" name="exportType" value="5">RTF
+      </td>
+      #end 
+       #if ($report.textExportEnabled)
+      <td>
+        <input type="radio" name="exportType" value="6">Texto
+      </td>
+      #end 
+       #if ($report.excelExportEnabled)
+      <td>
+        <input type="radio" name="exportType" value="7">Excel
+      </td>
+      #end 
+      #if ($report.jasperReport)
+	  <td>
+        <input type="radio" name="exportType" value="4">Imagem
+      </td>  
+      #end
+	  
+      <script language="JavaScript" type="text/JavaScript">
+        setDefaultExportType()
+	  </script>    
+    </tr>
+	    <tr><td>&nbsp;</td></tr>
+  </table>
+  
+    <div id="buttons" class="button-bar">  
+        <input type="submit" onClick="setNoTarget()" class="standardButton" name="submitRun" value="Exibir">
+        <input type="submit" onClick="setBlankTarget()" class="standardButton" name="submitRun" value="Exibir em nova janela">
+        #if ($user.scheduler)
+  		  <input type="submit" onClick="setNoTarget()" class="standardButton" name="submitSchedule" value="Agendar">
+		#end      
+    	<input type="hidden" name="reportId" value="$reportId">   
+  </div>
+       
+  </form>   
+  
+#parse("Footer2.vm") 
+

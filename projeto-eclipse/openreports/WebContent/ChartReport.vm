@@ -1,0 +1,80 @@
+
+#parse("Banner2.vm") 
+
+#if (!$report.displayInline)
+
+#end
+
+#parse("Errors.vm")
+
+
+ #if (!$report.displayInline)
+ <div class="titulo_pagina" id="instructions">$report.name</div>  
+ 
+ <br/>
+ #end
+
+$imageMap
+#if ($report.reportChart.engineGrafica == 0 && $report.reportChart.chartType != 5)
+<img style="border:1px solid #707070;"  usemap="#chart" src="imageLoader.action?imageName=ChartImage"/>	
+#end
+
+<br/>
+
+<br/>
+
+#if ($report.reportChart.showValues)
+
+$req.setAttribute("chartValues", $chartValues)
+
+#if ($report.reportChart.chartType == 0)
+
+	#bodytag( Table "name=chartValues" "class=displayTag_topo_bottom" "style=width:75%;" "sort=list" )  	   
+	    #tag( Column "property=category" "title=$report.reportChart.xAxisLabel" "sortable=true" "headerClass=sortable" )  	     
+		#tag( Column "property=value" "title=$report.reportChart.YAxisLabel" "sortable=true" "headerClass=sortable" "style=text-align:right;" "decorator=org.efs.openreports.util.NumberColumnDecorator" )  	     
+	#end  
+
+#end
+
+#if ($report.reportChart.chartType == 1 || $report.reportChart.chartType == 4)
+
+	#bodytag( Table "name=chartValues" "class=displayTag_topo_bottom" "style=width:75%;" "sort=list" )  
+	    #tag( Column "property=key" "title=Descrição" "sortable=true" "headerClass=sortable" )  	     
+		#tag( Column "property=value" "title=Valor" "sortable=true" "headerClass=sortable" "style=text-align:right;" "decorator=org.efs.openreports.util.NumberColumnDecorator")  	     
+	#end  
+
+#end
+
+#if ($report.reportChart.chartType == 2 )
+
+	#bodytag( Table "name=chartValues" "class=displayTag_topo_bottom" "style=width:75%;" "sort=list" )  
+	    #tag( Column "property=series" "title=Descrição" "sortable=true" "headerClass=sortable" )  	     	
+	    #tag( Column "property=value" "title=$report.reportChart.xAxisLabel" "sortable=true" "headerClass=sortable" "style=text-align:right;" "decorator=org.efs.openreports.util.NumberColumnDecorator")  	     
+		#tag( Column "property=secondValue" "title=$report.reportChart.yAxisLabel" "sortable=true" "headerClass=sortable" "style=text-align:right;" "decorator=org.efs.openreports.util.NumberColumnDecorator" )  	     
+	#end  
+
+#end
+
+#if ($report.reportChart.chartType == 3 )
+
+	#bodytag( Table "name=chartValues" "class=displayTag_topo_bottom" "style=width:75%;" "sort=list" ) 
+		#tag( Column "property=series" "title=Descrição" "sortable=true" "headerClass=sortable" )  	     		   
+	    #tag( Column "property=time" "title=$report.reportChart.xAxisLabel" "sortable=true" "headerClass=sortable" "decorator=org.efs.openreports.util.DateColumnDecorator" )  	     
+		#tag( Column "property=value" "title=$report.reportChart.yAxisLabel" "sortable=true" "headerClass=sortable" "style=text-align:right;" "decorator=org.efs.openreports.util.NumberColumnDecorator" )  	     
+	#end  
+
+#end
+
+#if ($report.reportChart.chartType == 5 )
+$req.setAttribute("results", $results)
+#bodytag( Table "name=results" "class=displayTag2" "sort=list" "export=true" "pagesize=40" "size=5000")        
+ 	#foreach ($property in $properties) 		
+ 		#tag( Column "property=$property.name" "title=$property.displayName" "sortable=true" "headerClass=sortable" "decorator=$!property.decorator")  	     
+	#end
+
+#end
+  
+#end
+
+#end
+#parse("Footer2.vm")

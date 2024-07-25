@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1;">
+<title></title>    
+<link href="css/consulta.css" rel="stylesheet" type="text/css" />
+
+
+
+</head>
+
+<body background="imagem/fundoPagina-01">
+<div class="titulo">
+<img src="imagem/back2.png"/>
+<div class="link_trocar_menu_consulta"> &nbsp;&nbsp;Módulo Atual: Consultas
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="reportGroup1.action">Ir para Administração</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="logout.action"> Sair</a>
+</div>
+</div>
+<br>
+<table width="80%">
+<tr>
+<td class="padding_topo">
+  
+<div class="padding_menu">
+<table class="item_menu" width="210px">
+  #foreach( $reportGroup in $req.getSession().getAttribute("listaDeGrupos") )
+	<tr>
+	<td width="20px"><img src="ico/relatorio.png"></td>
+	<td class="item_menu2"><a href="reportList.action?groupId=$reportGroup.id">
+		$reportGroup.upperName
+	</a>
+	</td>
+	</tr>
+  #end
+</table>
+</br>
+<a href="http://www.productiva.com.br">
+<table align="190px" class="item_menu2">
+  
+	<tbody><tr>
+	
+		<td style="vertical-align:middle">Powered by </td><td><img width="92" height="28" src="imagem/productiva_logo.png"></td>
+	
+	</tr>
+  
+</tbody></table></a>
+</div>
+<br/>
+
+
+
+</td><td style="padding-left:20px; padding-top:0px; vertical-align:top;">
+

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple click event</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body, #map-canvas {
+        height: 490px;
+		width: 550px;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+	<style>
+  #legend {
+    background: white;
+    padding: 10px;
+  }
+</style>
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script>
+function initialize() {
+  var mapOptions = {
+    zoom: 4,
+    center: new google.maps.LatLng(-15.798889,-55.866667)
+  };
+
+  var map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+
+  var marker = new google.maps.Marker({
+    position: new google.maps.LatLng(-15.798889,-47.866667),
+    map: map,
+    title: 'Click to zoom',
+	icon: 'ico/relatorio.png'
+  });
+
+  google.maps.event.addListener(map, 'center_changed', function() {
+    // 3 seconds after the center of the map has changed, pan back to the
+    // marker.
+    window.setTimeout(function() {
+      map.panTo(marker.getPosition());
+    }, 3000);
+  });
+
+  google.maps.event.addListener(marker, 'click', function() {
+    map.setZoom(8);
+    map.setCenter(marker.getPosition());
+  });
+
+  map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
+  document.getElementById('legend')); 
+  var legend = document.getElementById('legend');
+  var div = document.createElement('div');
+  div.innerHTML = '<img src="ico/relatorio.png"> ';
+  legend.appendChild(div);
+  
+  }
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+	<div id="legend">
+		My first legend!
+	</div>
+<table class="tabela_detalhe">
+<tbody>
+    <tr>
+  	  <th>Series</th>
+  	  <th>Value</th>
+  	  <th>Time</th>  	  
+  	</tr>
+  	  <tr class="b">
+  	  <td>Compras</td>
+  	  <td>888.0</td>
+  	  <td>2003-11-05 00:00:00.0</td>  	  
+  	</tr>
+  	  <tr class="b">
+  	  <td>Compras</td>
+  	  <td>377.0</td>
+  	  <td>2003-11-07 00:00:00.0</td>  	  
+  	</tr>
+</tbody></table>
+  </body>
+</html>

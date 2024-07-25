@@ -1,0 +1,46 @@
+#parse("Banner.vm") 
+
+#parse("Errors.vm")
+
+  <form action=reportUpload.action method="POST" enctype="multipart/form-data">
+  <div class="titulo_pagina" >Upload de Arquivos de Configuração de Relatórios</div>
+  
+  <table class=tabela_detalhe>
+    <tr colspan="2">      
+      <td>
+        <input type="file" name="file" value="Navegar..." size="50"/>&nbsp;
+        <input type="submit" class="standardButton" value="Upload">
+      </td>
+    </tr>   
+  </table> 
+  <input type="hidden" name="command" value="upload">
+  <input type="hidden" name="name" value="$name">
+    
+  <div class=barra_inferior>&nbsp;</div>
+  </form> 
+  
+  <br>
+  <div class="titulo_pagina" >Arquivos de Configuração de Relatórios</div>
+  
+  <table class=tabela_detalhe> 
+    <tr class="even">
+      #set( $counter = 0)
+      #set( $index = 1)
+      #foreach ($reportFileName in $reportFileNames)
+      	<td ><strong>$index.</strong> $reportFileName</td>
+      	#set( $counter = $counter + 1)
+      	#set( $index = $index + 1)
+      	#if ($counter == 2)
+      		</tr>
+      		<tr class="odd">
+      		#set( $counter = 0)
+      	#end
+      #end      
+    </tr>       
+  </table>
+<div class=barra_inferior>&nbsp;</div>		
+#parse("Footer.vm") 
+
+
+
+

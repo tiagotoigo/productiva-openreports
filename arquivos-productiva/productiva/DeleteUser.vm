@@ -1,0 +1,30 @@
+#parse("Banner.vm") 
+
+#parse("Errors.vm")
+
+  <form action="deleteUser.action">
+  <div class="titulo_pagina" id="instructions">Confirmação de Exlusão de Usuário</div>
+
+  <table class="tabela_detalhe" >    
+  <tr><td>Esta ação removerá todos os registros deste usuário dos arquivos de log.</td></tr>
+    <tr class="a">
+      <td class="boldText" width="20%"><b>Nome</b></td>
+      <td>$!name</td>
+    </tr>    
+  </table>
+  
+       <div class="barra_confirmacao" id="buttons">
+        <input class="standardButton" type="submit" name="submitDelete" value="Confirmar">
+        <input class="standardButton" type="submit" name="submitCancel" value="Cancelar">
+       </div>
+     
+    <input type="hidden" name="id" value="$!id">     
+    
+  </form>
+  
+  <br> 
+</div>
+
+#parse("Footer.vm") 
+
+

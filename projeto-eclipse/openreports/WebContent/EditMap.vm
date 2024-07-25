@@ -1,0 +1,137 @@
+#parse("Banner.vm") 
+
+<script type="text/javascript">	
+	dojo.require("dojo.widget.LinkPane");	
+</script>
+
+#parse("Errors.vm")
+
+<form action="editMap.action" name="chartForm" method="post"> 
+<div class="titulo_pagina">
+		   #if ($command == "add")
+		   	Novo Mapa
+		   #end
+		   #if ($command != "add")
+		   	Mapa $name
+		   #end
+</div>
+  <table class="tabela_detalhe">    
+    <tr class="a">
+      <td class="boldText" width="30%">Nome</td>
+      <td>
+      	&nbsp;
+      </td>
+      <td><input type="text" size="60" name="name" value="$!name"></td>
+    </tr>
+    <tr class="b">
+      <td class="boldText" width="30%">Descrição</td>
+      <td>
+      	&nbsp;
+      </td>
+      <td><input type="text" size="60" name="description" value="$!description"></td>
+    </tr>    
+   
+    <tr class="b">
+      <td class="boldText" width="30%">Largura</td>
+      <td>
+      		&nbsp;        
+      </td>
+      <td><input type="text" size="60" name="mapWidth" value="$!mapWidth"></td>
+    </tr>    
+    <tr class="a">
+      <td class="boldText" width="30%">Altura</td>
+      <td>
+      		&nbsp;
+      </td>
+      <td><input type="text" size="60" name="mapHeight" value="$!mapHeight"></td>
+    </tr>
+    <tr class="a">
+      <td class="boldText" width="30%">Ponto inicial central - Latitude</td>
+      <td>
+      		&nbsp;
+      </td>
+      <td><input type="text" size="60" name="mapCentralLat" value="$!mapCentralLat"></td>
+    </tr>  
+    <tr class="a">
+      <td class="boldText" width="30%">Ponto inicial central - Longitude</td>
+      <td>
+      		&nbsp;
+      </td>
+      <td><input type="text" size="60" name="mapCentralLong" value="$!mapCentralLong"></td>
+    </tr>    
+     <tr class="a">
+      <td class="boldText" width="30%">Zoom </td>
+      <td>
+      	&nbsp;
+      </td>
+      <td>
+        <input type="text" size="6" name="mapZoom" value="$!mapZoom">
+      </td>
+    </tr>
+   		
+   	 <input type="hidden" name="chartType" value="5">
+   
+    <tr class="b">
+      <td class="boldText" >Query</td>
+      <td>
+      	<img  id="query" src="images/help.gif">
+      	<a dojoType="tooltip" connectId="query" href="tooltips/chart-query.html" executeScripts="no"></a>         
+      </td>
+      <td><textarea rows="3" cols="45" name="query">$!query</textarea></td>
+    </tr>    
+    <tr class="a">
+      <td class="boldText" width="20%">DataSource</td>
+      <td>
+      	&nbsp;
+      </td>
+      <td>
+        <select name="dataSourceId">
+          <option value="-1" SELECTED>Selecione</option>
+          #foreach ($dataSource in $dataSources)
+          <option value="$dataSource.id" #if ($dataSource.id == $dataSourceId) SELECTED #end >$dataSource.name</option>
+          #end
+        </select>
+      </td>
+    </tr>       
+    <!--tr class="a">
+      <td class="boldText" width="20%">Relatório DrillDown</td>
+      <td>
+      	&nbsp;
+      </td>
+      <td>
+        <select name="reportId">
+          <option value="-1" SELECTED>Selecione</option>
+          #foreach ($report in $reports)
+          <option value="$report.id" #if ($report.id == $reportId) SELECTED #end >$report.name</option>
+          #end
+        </select>
+      </td>
+    </tr-->
+	
+	<input name="reportId" type="hidden" value="-1">
+   </table>
+  
+        <div class="button-bar" id="buttons" >
+        <input class="standardButton" type="submit" name="submitOk" value="Ok">
+        <input class="standardButton" type="submit" name="submitValidate" value="Validar">
+          </div>
+    
+  <input type="hidden" name="id" value="$!id">
+  <input type="hidden" name="command" value="$!command"></th>
+  
+  </form>
+	
+	<br>
+	
+  #if ($chartValues)
+  <div class="titulo_pagina">Valores do Mapa</div>
+	$results
+  </table>
+  #end
+   	
+  
+ 
+</div>
+
+#parse("Footer.vm") 
+

@@ -1,0 +1,57 @@
+#parse("Banner.vm") 
+
+#parse("Errors.vm")
+
+  <form action="editGroup.action">
+
+<div class="titulo_pagina">  
+  
+		   #if ($command == "add")
+		   	INCLUIR GRUPO
+		   #end
+		   #if ($command != "add")
+		   	GRUPO SELECIONADO: $name
+		   #end
+</div>	
+  
+
+  
+  <table class="tabela_detalhe" >    
+    <tr class="a">
+      <td class="boldText" width="20%">Nome</td>
+      <td><input type="text" size="60" name="name" value="$!name"></td>
+    </tr>
+    <tr class="b">
+      <td class="boldText">Descrição</td>
+      <td><input type="text" size="60" name="description" value="$!description"></td>
+    </tr>
+   <tr>
+   	<td valign="top" class="boldText">Relatório</td>
+   	<td>&nbsp;</td>
+	</tr>
+   		#foreach ($report in $reports)
+		   <tr>   	<td>&nbsp;</td><td> 
+        	<input type="checkbox" name="reportIds" value="$report.id"
+	          #foreach ($reportInGroup in $reportsInGroup)
+    	        #if ($report.id == $reportInGroup.id)
+        	      CHECKED
+            	#end
+	          #end
+    	    >
+        	$report.name
+      	   </td></tr>
+        #end
+</table>
+   
+       <div class="button-bar" id="buttons" >
+       	<input class="standardButton" type="submit" name="submitType" value="Ok">
+       </div>
+    
+    <input type="hidden" name="id" value="$!id">
+    <input type="hidden" name="command" value="$!command">    
+  
+  </form>
+
+
+#parse("Footer.vm") 
+

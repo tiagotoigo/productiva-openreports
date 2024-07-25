@@ -1,0 +1,43 @@
+#parse("Banner.vm") 
+
+#parse("Errors.vm")
+
+  <form action="$req.requestURI" >  
+  <div class="titulo_pagina" id="instructions">Confirmação de Exclusão de Agendamento de Relatório </div>  
+
+  <table class="tabela_detalhe">
+    <tr class="a">
+      <td class="boldText" width="20%"><b>Nome</b></td>
+      <td>$!name</td>      
+    </tr>   
+    <tr >
+      <td class="boldText" width="20%"><b>Descrição</b></td>
+      <td>$!description</td>      
+    </tr>   
+    <tr class="b">
+      <td class="boldText" width="20%"><b>Data de Início</b></td>
+      <td>$!startDate</>
+    </tr>
+    <tr class="a">
+      <td class="boldText" width="20%"><b>Tipo de Agendamento</b></td>
+      <td>$!scheduleTypeName</>
+    </tr>
+  </table>
+  
+  <br>  
+  
+      	<div class="button-bar" id="buttons" >
+        <input class="standardButton" type="submit" name="submitDelete" value="Confirmar">
+        <input class="standardButton" type="submit" name="submitCancel" value="Cancelar">
+        </div>
+   
+    <input type="hidden" name="userId" value="$!userId">
+    <input type="hidden" name="scheduleName" value="$!scheduleName">     
+   
+  </form>
+  <br> 
+
+  
+#parse("Footer.vm") 
+
+

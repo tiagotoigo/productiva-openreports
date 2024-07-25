@@ -1,0 +1,12 @@
+#parse("Banner.vm")
+<!-- 
+<a href="#" onclick="javascript:alert('teste')"> <b>Relatório 05.Exemplo com Gráfico</b></a>
+<div style="width:200px; height:200px; border: 1px solid #666666; cursor: pointer;" >
+<iframe style="width:100%; height: 100%; cursor: pointer;" src="http://localhost:8080/extrator/reportDetailSemBanner.action?reportId=65" 
+scrolling="no" frameborder="0"  ></iframe>
+</div>
+</form>
+ -->
+ <br/>
+ &nbsp;<br/>
+ #parse("Footer.vm")

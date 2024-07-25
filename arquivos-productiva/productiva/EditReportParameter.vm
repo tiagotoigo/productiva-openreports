@@ -1,0 +1,137 @@
+#parse("Banner.vm") 
+
+#parse("Errors.vm")
+   
+<script type="text/javascript">	
+	dojo.require("dojo.widget.LinkPane");	
+</script>
+
+  <form action="editReportParameter.action" name="paramForm" method="post"> 
+
+<div class="titulo_pagina">
+  
+		   #if ($command == "add")
+		   	Novo Filtro
+		   #end
+		   #if ($command != "add")
+		   	Filtro $name
+		   #end
+</div>
+  
+ 
+  
+  <table class="tabela_detalhe" >
+
+    <tr class="a">
+      <td class="boldText"  width="30%">Nome</td>
+      <td>
+      	&nbsp;
+      </td>
+      <td><input type="text" size="60" name="name" value="$!name"></td>
+    </tr>
+    <tr class="b">
+      <td class="boldText"  width="30%">Descrição</td>
+      <td>
+      	&nbsp;
+      </td>
+      <td><input type="text" size="60" name="description" value="$!description"></td>
+    </tr>
+    <tr class="a">
+      <td class="boldText" >Obrigatório</td>
+      <td>
+      	&nbsp;
+      </td>
+      <td><input type="checkbox" name="required" value="true" #if ($required == true) CHECKED #end></td>
+    </tr>
+    <tr class="a">
+      <td class="boldText"  width="20%">Classe</td>
+      <td>
+      	<img  id="class" src="images/help.gif">
+      	<a dojoType="tooltip" connectId="class" href="tooltips/parameter-class.html" executeScripts="no"></a>         
+      </td>
+      <td>
+        <select name="className">
+          #foreach ($classNameValue in $classNames)
+          <option value="$classNameValue" #if ($classNameValue == $className) SELECTED #end >$classNameValue</option>
+          #end
+        </select>
+      </td>
+    </tr>
+    <tr class="b">
+      <td class="boldText"  width="20%">Tipo</td>
+      <td>
+      	<img  id="type" src="images/help.gif">
+       	<a dojoType="tooltip" connectId="type" href="tooltips/parameter-type.html" executeScripts="no"></a>         
+      </td>
+      <td>
+        <select name="type" onchange="enableFields();">
+          #foreach ($typeValue in $types)
+          <option value="$typeValue" #if ($typeValue == $type) SELECTED #end >$typeValue</option>
+          #end
+        </select>
+      </td>
+    </tr>
+    <tr id="multipleSelectId" class="a">     
+      <td class="boldText" >Seleção Múltipla</td>
+      <td>
+      	<img  id="multiple" src="images/help.gif">
+      	<a dojoType="tooltip" connectId="multiple" href="tooltips/parameter-multiselect.html" executeScripts="no"></a>         
+      </td>
+      <td><input type="checkbox" name="multipleSelect" value="true" #if ($multipleSelect == true) CHECKED #end></td>
+    </tr>
+    <tr id="paramData" class="b">
+      <td class="boldText" >Data</td>
+      <td>
+      	<img  id="data" src="images/help.gif">
+      	<a dojoType="tooltip" connectId="data" href="tooltips/parameter-data.html" executeScripts="no"></a>         
+      </td>
+      <td><textarea rows="3" cols="45" name="data">$!data</textarea></td>
+    </tr>    
+    <tr id="paramDataSourceId" class="a">
+      <td  class="boldText"  width="20%">DataSource</td>
+      <td>
+      	<img  id="datasource" src="images/help.gif">
+      	<a dojoType="tooltip" connectId="datasource" href="tooltips/parameter-datasource.html" executeScripts="no"></a>         
+      </td>
+      <td>
+        <select name="dataSourceId">
+          <option value="-1" SELECTED>(none)</option>
+          #foreach ($dataSource in $dataSources)
+          <option value="$dataSource.id" #if ($dataSource.id == $dataSourceId) SELECTED #end >$dataSource.name</option>
+          #end
+        </select>
+      </td>
+    </tr>      
+    </table>
+
+        <div class="button-bar" id="buttons" >
+        <input class="botao" type="submit" name="submitOk" value="Ok">
+        <input class="botao" type="submit" name="submitValidate" value="Validar">
+        </div>
+   
+  <input type="hidden" name="id" value="$!id">
+  <input type="hidden" name="command" value="$!command"></th>
+  
+  </form>
+  <br>   
+  #if ($parameterValues)
+  <div class="titulo_pagina">Valores do Filtro	</div>
+  <table class="tabela_detalhe" >
+  	<tr>
+  	  <th>ID</th>
+  	  <th>Description</th>
+  	</tr>
+  	#foreach($parameterValue in $parameterValues)
+  	<tr >
+  	  <td>$parameterValue.id</td>
+  	  <td>$parameterValue.description</td>
+  	</tr>
+  	#end  	
+  </table>
+   	<div class="barra_inferior">&nbsp;</div>
+  #end
+
+</div>
+
+#parse("Footer.vm") 
+

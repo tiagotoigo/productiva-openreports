@@ -1,0 +1,235 @@
+#parse("Banner.vm") 
+
+<script type="text/javascript">	
+	dojo.require("dojo.widget.LinkPane");	
+</script>
+
+#parse("Errors.vm")
+
+<form action="editChart.action" name="chartForm" method="post"> 
+<div class="titulo_pagina">
+		   #if ($command == "add")
+		   	Novo Gráfico
+		   #end
+		   #if ($command != "add")
+		   	Gráfico $name
+		   #end
+</div>
+  <table class="tabela_detalhe">    
+    <tr class="a">
+      <td class="boldText" width="30%">Nome</td>
+      <td>
+      	&nbsp;
+      </td>
+      <td><input type="text" size="60" name="name" value="$!name"></td>
+    </tr>
+    <tr class="b">
+      <td class="boldText" width="30%">Descrição</td>
+      <td>
+      	&nbsp;
+      </td>
+      <td><input type="text" size="60" name="description" value="$!description"></td>
+    </tr>    
+    <tr class="a">
+      <td class="boldText" width="30%">Tipo de Gráfico </td>
+      <td>
+      	&nbsp;
+      </td>
+      <td>
+        <select name="chartType" onchange="enableFields()">
+          <option value="0" #if ($chartType == 0) SELECTED #end>Barra</option>
+          <option value="1" #if ($chartType == 1) SELECTED #end>Pizza</option>
+          <option value="2" #if ($chartType == 2) SELECTED #end>XY</option>
+		  <option value="3" #if ($chartType == 3) SELECTED #end>Tempo</option>
+		  <option value="4" #if ($chartType == 4) SELECTED #end>Anel</option>		 
+        </select>
+      </td>
+    </tr>
+    <tr class="b">
+      <td class="boldText" width="30%">Largura</td>
+      <td>
+      		&nbsp;        
+      </td>
+      <td><input type="text" size="60" name="width" value="$!width"></td>
+    </tr>    
+    <tr class="a">
+      <td class="boldText" width="30%">Altura</td>
+      <td>
+      		&nbsp;
+      </td>
+      <td><input type="text" size="60" name="height" value="$!height"></td>
+    </tr>  
+    <tr>
+      <td class="boldText" width="30%">Título</td>
+      <td>
+      		&nbsp;
+      </td>
+      <td>  
+      	<input type="checkbox" name="showTitle" value="true" #if ($showTitle == true) CHECKED #end>   	   
+      </td>
+    </tr>    
+    <tr>
+      <td class="boldText" width="30%">Exibir Legenda</td>
+      <td>
+      		&nbsp;
+      </td>
+      <td>  
+      	<input type="checkbox" name="showLegend" value="true" #if ($showLegend == true) CHECKED #end>   	   
+      </td>
+    </tr>      
+    <tr>
+      <td class="boldText" width="30%">Exibir Valores</td>
+      <td>
+      	<img  id="values" src="images/help.gif">
+      	<a dojoType="tooltip" connectId="values" href="tooltips/chart-values.html" executeScripts="no"></a>         
+      </td>
+      <td>  
+      	<input type="checkbox" name="showValues" value="true" #if ($showValues == true) CHECKED #end>   	   
+      </td>
+    </tr>     
+    <tr id="xLabel" class="b">
+      <td class="boldText" width="30%">Descrição do Eixo X</td>
+      <td>
+      	<img  id="xlabel" src="images/help.gif">
+      	<a dojoType="tooltip" connectId="xlabel" href="tooltips/chart-xlabel.html" executeScripts="no"></a>         
+      </td>
+      <td><input type="text" size="60" name="xAxisLabel" value="$!xAxisLabel"></td>
+    </tr>    
+    <tr id="yLabel" class="a">
+      <td class="boldText" width="30%">Descrição do Eixo Y</td>
+      <td>
+      	<img  id="ylabel" src="images/help.gif">
+      	<a dojoType="tooltip" connectId="ylabel" href="tooltips/chart-ylabel.html" executeScripts="no"></a>         
+      </td>
+      <td><input type="text" size="60" name="yAxisLabel" value="$!yAxisLabel"></td>
+    </tr>        
+    <tr>
+      <td class="boldText" width="30%">Orientação</td>
+      <td>
+      	<img  id="plot" src="images/help.gif">
+      	<a dojoType="tooltip" connectId="plot" href="tooltips/chart-plotorientation.html" executeScripts="no"></a>         
+      </td>
+      <td>
+      	<select name="orientation">
+      		<option value="1" #if ($orientation == 1) SELECTED #end>Horizontal</option>
+      		<option value="2" #if ($orientation == 2) SELECTED #end>Vertical</option>      	
+      	</select>
+      </td>
+    </tr>      
+    <tr class="b">
+      <td class="boldText" >Query</td>
+      <td>
+      	<img  id="query" src="images/help.gif">
+      	<a dojoType="tooltip" connectId="query" href="tooltips/chart-query.html" executeScripts="no"></a>         
+      </td>
+      <td><textarea rows="3" cols="45" name="query">$!query</textarea></td>
+    </tr>    
+    <tr class="a">
+      <td class="boldText" width="20%">DataSource</td>
+      <td>
+      	&nbsp;
+      </td>
+      <td>
+        <select name="dataSourceId">
+          <option value="-1" SELECTED>(none)</option>
+          #foreach ($dataSource in $dataSources)
+          <option value="$dataSource.id" #if ($dataSource.id == $dataSourceId) SELECTED #end >$dataSource.name</option>
+          #end
+        </select>
+      </td>
+    </tr>       
+    <!--tr class="a">
+      <td class="boldText" width="20%">Relatório DrillDown</td>
+      <td>
+      	&nbsp;
+      </td>
+      <td>
+        <select name="reportId">
+          <option value="-1" SELECTED>(none)</option>
+          #foreach ($report in $reports)
+          <option value="$report.id" #if ($report.id == $reportId) SELECTED #end >$report.name</option>
+          #end
+        </select>
+      </td>
+    </tr-->
+	
+	<input name="reportId" type="hidden" value="-1">
+   </table>
+  
+        <div class="button-bar" id="buttons" >
+        <input class="standardButton" type="submit" name="submitOk" value="Ok">
+        <input class="standardButton" type="submit" name="submitValidate" value="Validar">
+          </div>
+    
+  <input type="hidden" name="id" value="$!id">
+  <input type="hidden" name="command" value="$!command"></th>
+  
+  </form>
+	
+	<br>
+	
+  #if ($chartValues)
+  <div class="titulo_pagina">Valores do Gráfico</div>
+  <table class="tabela_detalhe" >
+  	#if ($chartType == 0)
+  	<tr>
+  	  <th>Valor</th>
+  	  <th>Séries</th>
+  	  <th>Categoria</th>
+  	</tr>
+  	#foreach($chartValue in $chartValues)
+  	<tr class="b">
+  	  <td>$chartValue.value</td>
+  	  <td>$chartValue.series</td>
+  	  <td>$chartValue.Category</td>
+  	</tr>
+  	#end  
+  	#end
+  	#if ($chartType == 1)
+  	<tr>
+  	  <th>Valor</th>
+  	  <th>Chave</th>  	 
+  	</tr>
+  	#foreach($chartValue in $chartValues)
+  	<tr class="b">
+  	  <td>$chartValue.value</td>
+  	  <td>$chartValue.key</td>  	  
+  	</tr>
+  	#end  
+  	#end
+  	#if ($chartType == 2)
+  	<tr>
+  	  <th>Séries</th>
+  	  <th>Valor 1</th>
+  	  <th>Valor 2</th>  	  
+  	</tr>
+  	#foreach($chartValue in $chartValues)
+  	<tr class="b">
+  	  <td>$chartValue.series</td>
+  	  <td>$chartValue.value</td>
+  	  <td>$chartValue.secondValue</td>  	  
+  	</tr>
+  	#end  
+  	#end
+		#if ($chartType == 3)
+  	<tr>
+  	  <th>Series</th>
+  	  <th>Value</th>
+  	  <th>Time</th>  	  
+  	</tr>
+  	#foreach($chartValue in $chartValues)
+  	<tr class="b">
+  	  <td>$chartValue.series</td>
+  	  <td>$chartValue.value</td>
+  	  <td>$chartValue.time</td>  	  
+  	</tr>
+  	#end  
+  	#end    	
+  </table>
+   	<div class="barra_inferior">&nbsp;</div>
+  #end
+ 
+</div>
+
+#parse("Footer.vm") 
+

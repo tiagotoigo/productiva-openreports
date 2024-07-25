@@ -1,0 +1,128 @@
+<script language="JavaScript" src="date-picker.js"></script>
+
+#parse("Banner2.vm") 
+
+  <form action="$req.requestURI" name="scheduleDetail"  >
+  #parse("Errors.vm")   
+   <div class="titulo_pagina" >
+		Agendamento do Relatório $report.name
+   </div>
+		  
+  <table class="tabela_detalhe" >         
+    <tr>
+      <td class="boldText">Descrição</td>         
+      <td colspan="6">      
+        <input type="text" name="description" value="$!description" size="80">
+      </td>
+    </tr>
+    <tr>
+      <td class="boldText">Tipo de Agendamento</td>         
+      <td>
+        <input type="radio" name="scheduleType" value="0" CHECKED>Uma vez
+      </td>
+      <td>
+			<input type="radio" name="scheduleType" value="5" #if ($scheduleType == 5) CHECKED #end>Uma vez a cada hora
+	  </td>
+      <td>
+        <input type="radio" name="scheduleType" value="1" #if ($scheduleType == 1) CHECKED #end>Diário
+      </td>
+      <td>
+        <input type="radio" name="scheduleType" value="4" #if ($scheduleType == 4) CHECKED #end>Dias Úteis
+      </td>     
+    </tr>  
+    <tr>
+      <td class="boldText">&nbsp;</td> 
+      <td>
+        <input type="radio" name="scheduleType" value="2" #if ($scheduleType == 2) CHECKED #end>Semanal
+      </td>     
+	  <td>
+        <input type="radio" name="scheduleType" value="3" #if ($scheduleType == 3) CHECKED #end>Mensal
+      </td>  
+      #if ($user.advancedScheduler)
+      <td><input type="radio" name="scheduleType" value="6" #if ($scheduleType == 6) CHECKED #end>Expressão Cronológica</td>
+      #end
+   	</tr>        
+    <tr>
+      <td class="boldText">Data de Início</td>         
+      <td colspan="2">
+        <input type="text" name="startDate" value="$!startDate" length="50">
+        <a href="javascript:show_calendar('scheduleDetail.startDate','','','$dateFormat');"
+           onmouseover="window.status='Date Picker';return true;"
+           onmouseout="window.status='';return true;"><img border="none" src="images/icon_calendar.gif"/></a>
+      </td>
+      #if ($user.advancedScheduler)
+       <td class="boldText">Expressão Cronológica <font color="red">*</font></td>         
+      <td colspan="2">
+        <input type="text" name="cron" value="$!cron" size="20" maxLength="20" />      
+        </td>    
+       #end      
+    </tr>    
+    <tr>
+     <td class="boldText">Hora de Início</td>         
+      <td colspan="2">
+        <input type="text" name="startHour" value="$!startHour" size="2" maxLength="2" /> :   
+        <input type="text" name="startMinute" value="$!startMinute" size="2" maxLength="2" />      
+        <select name="startAmPm" value="$startAmPm">
+          <option value="AM">AM</option>
+          <option value="PM" #if ($startAmPm == "PM") SELECTED #end >PM</option>
+        </select>
+      </td> 
+	  </tr>
+	  <tr> 
+       <td class="boldText">No. de Horas<font color="red">*</font></td>         
+      <td colspan="2">
+     	 <input type="text" name="hours" value="$!hours" size="20" maxLength="20" />    
+      </td>      	
+    </tr>   
+    #if ($user.alertUser)
+    <tr>
+      <td class="boldText" width="20%">Condition</td>
+      <td colspan="6">
+        <select name="alertId">
+          <option value="-1" SELECTED>Selecione</option>
+          #foreach ($alert in $alerts)
+          <option value="$alert.id" #if ($alert.id == $alertId) SELECTED #end >$alert.description</option>
+          #end
+        </select>
+        <select name="alertOperator">         
+          #foreach ($operator in $operators)
+          <option value="$operator" #if ($operator == $alertOperator) SELECTED #end >$operator &nbsp;</option>
+          #end
+        </select>          
+        <input type="text" name="alertLimit" value="$!alertLimit" size="10" maxLength="10" />      
+      </td>
+    </tr>   
+    #end 
+    #if (!$user.alertUser)
+    	<input type="hidden" name="alertId" value="-1">
+    #end
+     <tr>
+      <td class="boldText">Destinatários</td>         
+      <td colspan="6">      
+        <textarea rows="2" cols="60" name="recipients">$!recipients</textarea>
+      </td>
+    </tr>      
+  </table>
+  
+  
+  
+		  <div class="button-bar" id="buttons" >
+		  	    <input type="hidden" name="scheduleName" value="$!scheduleName">
+   			    <input type="hidden" name="userId" value="$!userId">
+		        <input type="submit" class="standardButton" name="submitScheduledReport" value="Agendar">
+		  </div>
+ 
+  
+  </form>    
+   
+   <div class="Texto"> 
+   		* No. de horas se aplica somente a relatórios que são extraídos uma vez a cada hora.<br>
+   		#if ($user.advancedScheduler)
+   		* Expressões cronológicas se aplicam somente a relatórios com essa configuração.
+   		#end
+   </div>    
+  
+</div>
+
+#parse("Footer2.vm") 
+

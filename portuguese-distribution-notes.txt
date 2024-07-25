@@ -1,0 +1,63 @@
+=============================
+DISTRIBUIÇÃO GPL EM PORTUGUÊS
+=============================
+
+    Este software é uma distribuição licenciada sob GPLv3, em 
+conformidade à licença do software original Open Reports 2.2, licenciada
+sob GPLv2. Nesta distribuição foram realizadas as seguintes alterações: 
+1.Tradução para o português;
+2.Divisão da aplicação web original em dois módulos: Módulo de 
+Administração e Módulo de Consultas;
+3.Novo padrão de interface do usuário.
+As alterações tem como objetivo tornar a tecnologia mais acessível entre 
+usuários de língua portuguesa.
+4.Inclusão de dois novos geradores de gráficos (FusionCharts
+e HighCharts)
+5.Inclusão de funcionalidade de geração de mapas (Googlemaps)
+
+    A licença GPL exige que sejam feitos comentários proeminentes sobre 
+o que foi alterado em cada nova distribuição de um software livre. Para 
+tanto, as alterações de arquivos foram documentadas e os trechos de 
+códigos alterados do original foram identificados na pasta 
+"arquivos-productiva". 
+
+    As novas classes podem ser encontradas juntamente com o código-fonte
+no diretório (package) br.com.productiva.
+
+    Documentação em português de apoio ao administrador e ao usuário do 
+OpenReports pode ser encontrada no site da Productiva 
+www.productiva.com.br, distribuidora desta versão.
+
+    Para maiores informações sobre o original acessse www.oreports.org.
+	
+
+=============================
+PORTUGUESE DISTRIBUTION NOTES
+=============================
+
+    This software is a distribution licensed under GPLv3, according
+to its original software Open Reports 2.2, licensed under GPLv2. 
+In this distribution there were mainly these modifications: 
+1.Portuguese translation;
+2.Division of the original in two modules: Administration Module and
+Consultation Module;
+3.Different User interface.
+The modifications purpose was meraly to promote this reporting technology 
+to portuguese speakers users.
+4.Inclusion of two new graphic engines (FusionCharts Free and HighCharts) 
+(Highcharts is included for non-comercial use. For comercial use, visit
+highcharts.com)
+5.Inclusion of Geomaps functionality (Googlemaps)
+
+    GPL license demands prominent comments about the changes that were
+made. Furthermore, files modifications were documented and the original
+files were identified in the directory "arquivos-productiva".
+
+    All new classes created by Productiva can be found within source code
+in directory (package) br.com.productiva.
+
+    Supporting document in portuguese can be found on Productiva's website.
+
+    For more information about the original software visit www.oreports.org.
+
+

@@ -1,0 +1,73 @@
+#parse("Banner.vm") 
+
+#parse("Errors.vm")
+
+
+  <form action="viewReportLogs.action">
+	<div class="titulo_pagina" id="instructions" >
+		   Consulta de Log
+	</div>
+
+  <table class="tabela_detalhe">   
+	<tr>		
+		<td>
+			&nbsp;Status: 
+			<select name="status">
+				<option value="">Todos</option>
+				#foreach ($statusString in $statuses)
+					<option value="$statusString" #if ($status == $statusString) SELECTED #end>$statusString</option>
+		        #end
+			</select>
+			Relatório: 
+			<select name="reportId">
+				<option value="">Todos</option>
+				<option value="-1" #if ($reportId == -1) SELECTED #end>Nenhum</option>
+				#foreach ($report in $reports)
+					<option value="$report.id" #if ($reportId == $report.id) SELECTED #end>$report.name</option>
+		        #end
+			</select>				
+			Usuário: 
+			<select name="userId">
+				<option value="">Todos</option>
+				#foreach ($user in $users)
+					<option value="$user.id" #if ($userId == $user.id) SELECTED #end>$user.name</option>
+		        #end
+			</select>				
+		    <input class="standardButton" type="submit" name="submitOk" value="Consultar">
+      </td>
+	</tr>	
+  </table>
+  
+
+  
+#if ($resultAvailable)
+
+<div class="tabela_detalhe2" width="720px">
+	
+ 
+  	  	$req.setAttribute("reportLogs", $reportLogs)
+
+		#bodytag( Table "name=reportLogs" "class=displayTag2" "sort=list" "pagesize=20")  	      
+  	      #tag( Column "property=startTime" "title=Hora de Início" "sortable=true" "headerClass=sortable" "decorator=org.efs.openreports.util.DateColumnDecorator")  	     
+  	      #tag( Column "property=elapsedTime" "title= Time(s)" "sortable=true" "headerClass=sortable")
+  	      #tag( Column "property=status" "title=Status" "sortable=true" "headerClass=sortable" )
+ 	      #tag( Column "property=report" "title=Relatório" "sortable=true" "headerClass=sortable" )
+ 	      #tag( Column "property=user.name" "title=Usuário" "sortable=true" "headerClass=sortable" )    	      	    
+  	      #tag( Column "property=message" "title=Mensagem" "sortable=true" "headerClass=sortable" )  	     
+		#end
+	
+  
+</div>
+
+#end
+
+<div class="barra_inferior"></div>
+
+<div class="Texto">
+* Resultado da query de log limitado a 500 linhas.
+</div>
+
+  </form>
+#parse("Footer.vm") 
+
+

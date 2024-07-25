@@ -1,0 +1,16 @@
+#parse("Banner.vm") 
+
+#parse("Errors.vm")
+
+  <!--div class="titulo_pagina" id="instructions">Grupos </div>	 
+ 
+  $req.setAttribute("reportGroups", $reportGroups)
+
+  #bodytag( Table "name=reportGroups" "class=tabela_detalhe" "sort=list")
+    #tag( Column "property=name" "href=reportList.action" "paramId=groupId" "paramProperty=id" "sortable=false" )
+  #end
+   
+  <div class="barra_inferior">&nbsp; </div-->	
+
+#parse("Footer.vm") 
+

@@ -1,0 +1,19 @@
+
+#parse("Banner2.vm") 
+
+#parse("Errors.vm")
+
+  <div class="titulo_pagina" href="reportGroup.action">Relatórios</div>	
+
+  $req.setAttribute("reports", $reports)
+
+  #bodytag( Table "name=reports" "class=displayTag" "sort=list")  	  	    
+    #tag( Column "property=name" "title=Nome" "href=reportDetail.action" "paramId=reportId" "paramProperty=id" "sortable=true" "headerClass=sortable")  	     
+    #tag( Column "property=description" "title=Descrição" "sortable=true" "headerClass=sortable")  	     	     
+  #end  
+  
+  <div class="button-bar">
+	&nbsp;</div>
+
+#parse("Footer2.vm") 
+

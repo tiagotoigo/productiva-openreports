@@ -1,0 +1,21 @@
+#parse("Banner.vm") 
+	
+#parse("Errors.vm")
+
+<div class="titulo_pagina">Relatórios</div>
+
+  $req.setAttribute("reports", $reports)
+
+  #bodytag( Table "name=reports" "class=displayTag" "sort=list" "decorator=org.efs.openreports.util.HRefColumnDecorator")  	   	      
+    #tag( Column "property=name" "href=editReport.action?command=edit" "paramId=id" "paramProperty=id" "title=Nome" "sortable=true" "headerClass=sortable")    	     	      	     
+    #tag( Column "property=description" "title=Descrição" "sortable=true" "headerClass=sortable")  	 
+    #tag( Column "property=addToGroupLink" "title=" "href=editReportGroups.action" "paramId=id" "paramProperty=id")  	     	         	        	     	     
+    #tag( Column "property=removeLink" "title=" "href=deleteReport.action" "paramId=id" "paramProperty=id")  	     	     
+  #end  
+
+<div class="button-bar">
+<input type="button" value="Novo" onclick="javascript:abre('editReport.action?command=add');" class="botao">&nbsp;</div>
+
+#parse("Footer.vm") 
+
+

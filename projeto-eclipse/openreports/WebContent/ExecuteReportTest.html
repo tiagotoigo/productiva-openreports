@@ -1,0 +1,88 @@
+<html>
+
+<head>
+  <title>Gerador de Relatórios</title>    
+  <link href="css/openreports.css" rel="stylesheet" type="text/css">  
+</head>
+    
+
+<body style="margin-left:40px;" background="imagem/fundoPagina-01.gif">
+
+	<div class="titulo_pagina">
+Extrator de Relatórios - Chamada Externa</div>
+	
+	
+	
+	<form action="executeReport.action" method="get" target="_blank">  
+	<div align="center">	
+
+	
+	<table class="tabela_detalhe" >
+		<tr>
+			<td>Nome do Relatório <font color="gray">*</font></td>
+			<td><input type="text" name="reportName" value=""></td>
+		<tr>	
+		<tr>
+			<td>Código do Relatório<font color="gray">*</font></td>
+			<td><input type="text" name="reportId" value=""></td>
+		<tr>	
+		
+		<tr>
+			<td>Usuário <font color="gray">*</font></td>
+			<td><input type="text" name="userName" value="admin"></td>
+		<tr>
+		<tr>
+			<td>Senha <font color="gray">**</font></td>
+			<td><input type="text" name="password" value="admin"></td>
+		<tr>
+		<tr>
+			<td>Tipo de Exportação</td>
+			<td>
+				<select name="exportType">
+					<option value="0">PDF</option>
+					<option value="1">XLS</option>
+					<option value="2">HTML</option>
+					<option value="3">CSV</option>
+					<option value="4">Image</option>
+					<option value="5">RTF</option>
+					<option value="6">Text</option>
+					<option value="7">Excel</option>							
+				</select>
+			</td>
+		<tr>
+		<!--tr>
+			<td>Display Inline</td>			
+			<td>
+				<select name="displayInline">
+					<option value="true">True</option>
+					<option value="false">False</option>
+				</select>
+			</td>
+		<tr-->
+		<input type="hidden" name="displayInline" value="false">
+		<tr>
+			<td>Solicitar Filtros</td>			
+			<td>
+				<select name="promptForParameters">
+					<option value="true">True</option>
+					<option value="false">False</option>
+				</select>
+			</td>
+		<tr>
+	</table>
+	</div>
+		<div class="button-bar" >
+		        <input class="standardButton" type="submit" value="OK">		     
+	    </div>
+
+	<p>
+		<font color="gray">* Nome ou Código do Relatório é obrigatório.</font><br>
+		<font color="gray">** Usuário e Senha são solicitados apenas no primeiro relatório.</font>
+	</p>
+	</form>	
+	
+
+</center>
+
+</body>
+</html>

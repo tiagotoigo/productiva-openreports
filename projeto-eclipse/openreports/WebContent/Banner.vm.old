@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="application/x-www-form-urlenconded; charset=utf-8">
+<title></title>    
+<link href="css/consulta.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+function abre(endereco){
+	var url;
+	w=window.open(endereco,'_self');
+	w.focus();
+	return true;
+}
+</script>
+<script type="text/javascript" src="dojo.js"></script>  
+</head>
+
+<body background="imagem/fundoPagina-01.gif">
+
+<div class="titulo"><img src="imagem/back3tse.jpg">
+<div class="link_trocar_menu"> &nbsp;&nbsp;M&oacute;dulo Atual: Administra&ccedil;&atilde;o
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="reportGroup2.action">Ir para Consultas<a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="logout.action"> Sair<a>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+</div>
+<br>
+<table width="80%">
+<tr>
+<td class="padding_topo">
+  
+<div class="padding_menu">
+<table class="item_menu" width="180px">
+  #if( $user.dataSourceAdmin )
+	<tr>
+	<td class="item_menu2"><a href="listDataSources.action">
+		BANCOS DE DADOS
+	</a>
+	</td>
+	</tr>
+  #end
+  #if( $user.reportAdmin )
+	<tr>
+	<td class="item_menu2"><a href="listReports.action">
+		RELATÓRIOS
+	</a>
+	</td>
+	</tr>
+  #end
+  #if( $user.parameterAdmin )
+	<tr>
+	<td class="item_menu2"><a href="listReportParameters.action">
+		FILTROS
+	</a>
+	</td>
+	</tr>
+  #end
+  #if( $user.chartAdmin )
+	<tr>
+	<td class="item_menu2"><a href="listCharts.action">
+		GRÁFICOS
+	</a>
+	</td>
+	</tr>
+  #end  
+  #if( $user.groupAdmin )
+	<tr>
+	<td class="item_menu2"><a href="listGroups.action">
+		GRUPOS
+	</a>
+	</td>
+	</tr>
+  #end  
+  #if( $user.userAdmin )
+	<tr>
+	<td class="item_menu2"><a href="listUsers.action">
+		USUÁRIOS
+	</a>
+	</td>
+	</tr>
+  #end
+  #if( $user.scheduler )
+	<tr>
+	<td class="item_menu2"><a href="listScheduledReports.action">
+		REL. AGENDADOS
+	</a>
+	</td>
+	</tr>
+  #end  
+  #if( $user.uploader )
+	<tr>
+	<td class="item_menu2"><a href="reportUpload.action">
+		UPLOAD DE TEMPLATES
+	</a>
+	</td>
+	</tr>
+  #end
+  #if( $user.rootAdmin )
+<!--	<tr>
+	<td class="item_menu2"><a href="editProperties.action">
+		CONFIGURAÇÕES
+	</a>
+	</td>
+	</tr> -->
+  #end  
+  
+  #if( $user.logViewer )
+	<tr>
+	<td class="item_menu2"><a href="viewReportLogs.action">
+		LOGS
+	</a>
+	</td>
+	</tr>
+  #end
+
+	<tr>
+	<td class="item_menu2"><a href="userAdmin.action">
+		OP&Ccedil;&Otilde;ES
+	</a>
+	</td>
+	</tr>
+
+</table>
+</div>
+
+
+
+</td><td style="padding-left:20px; padding-top:0px;">
+
+

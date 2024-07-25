@@ -1,0 +1,70 @@
+#parse("Banner.vm") 
+
+#parse("Errors.vm")
+
+<div align="center">
+
+	<br/>
+
+	<div class="important" id="instructions"></div>
+				
+	<ul class="adminmenu" >	
+		<li>Administração de Relatórios</li>
+		#if ($user.reportAdmin)
+		<li class="img-report">	   	
+			<a href="listReports.action">Relatórios</a>         
+        </li>
+        #end          
+        #if ($user.parameterAdmin)
+        <li class="img-param">   
+        	<a href="listReportParameters.action">Parâmetros</a>          	
+        </li>
+        #end   
+        #if ($user.dataSourceAdmin)
+        <li class="img-ds">
+         	<a href="listDataSources.action">DataSources</a>
+        </li>
+       	#end        
+		#if ($user.alertAdmin)
+		<li class="img-report">         	
+         	<a href="listAlerts.action">Alertas</a>         
+        </li>	
+        #end       
+        #if ($user.chartAdmin)
+        <li class="img-chart"> 
+        	<a href="listCharts.action">Gráficos</a>         	
+        </li>
+        #end              
+    </ul>   
+    
+    <ul class="adminmenu">
+        <li>Segurança</li>
+        #if ($user.groupAdmin)
+        <li class="img-group">  	
+         	<a href="listGroups.action">Grupos</a>           	
+        </li>
+        #end
+       	#if ($user.rootAdmin)
+        <li class="img-user">         
+         	<a href="listUsers.action">Usuários</a>         
+        </li>
+        #end    
+	</ul>        
+	
+    <ul class="adminmenu">   
+    	<li>Administração Geral</li>       	
+       	#if ($user.rootAdmin)
+       	<li class="img-settings">
+         	<a href="editProperties.action">Configurações</a>
+        </li>
+        #end
+        #if ($user.logViewer)
+        <li class="img-log">
+         	<a href="viewReportLogs.action">Exibir Logs</a>
+        </li>
+        #end   
+     </ul>       	
+                  
+</div>
+
+

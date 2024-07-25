@@ -1,0 +1,37 @@
+#parse("Banner.vm") 
+
+#parse("Errors.vm")
+
+  <form action="editReportGroups.action" >  
+
+	<div class="titulo_pagina" style="width:600px">Grupos do Relatório $!report.name</div>
+ 
+  <table class="tabela_detalhe" style="width:603px">
+    #foreach ($group in $groups)
+    <tr>
+      <td class="boldText" style="padding-left:15px;">$group.name</td>
+      <td align="left">
+        <input type="checkbox" name="groupIds" value="$group.id"
+          #foreach ($groupForReport in $groupsForReport)
+            #if ($group.id == $groupForReport.id)
+              CHECKED
+            #end
+          #end
+        >
+      </td>
+    </tr>
+    #end   
+    </table>
+    
+    <div class="button-bar" id="buttons" style="width:595px">
+    	<input class="standardButton" type="submit" name="submitType" value="Ok">
+    </div>
+    
+    <input type="hidden" name="id" value="$!id">
+    <input type="hidden" name="command" value="$!command">    
+   
+
+  	</div>
+  	</form>
+
+#parse("Footer.vm") 

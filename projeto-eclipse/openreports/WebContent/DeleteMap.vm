@@ -1,0 +1,34 @@
+#parse("Banner.vm") 
+
+#parse("Errors.vm")
+
+     
+<form action="deleteMap.action" >
+<div class="titulo_pagina">Confirmação de Exclusão </div>
+
+  
+  <table class="tabela_detalhe" >   
+    <tr class="a">
+      <td class="boldText" width="20%"><b>Nome</b></td>
+      <td>$!name</td>
+    </tr>
+    <tr class="b">
+      <td class="boldText"><b>Descrição</b></td>
+      <td>$!description</td>
+    </tr>   
+   </table>
+  
+      <div class="barra_confirmacao" id="buttons">
+        <input class="standardButton" type="submit" name="submitDelete" value="Confirmar" >
+        <input class="standardButton" type="submit" name="submitCancel" value="Cancelar">
+   
+    <input type="hidden" name="id" value="$!id">     
+   
+  </form>
+  
+  <br> 
+
+
+#parse("Footer.vm") 
+
+

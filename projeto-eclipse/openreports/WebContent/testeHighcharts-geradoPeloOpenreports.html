@@ -1,0 +1,218 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1;">
+<title></title>    
+<link href="css/consulta.css" rel="stylesheet" type="text/css" />
+
+<script language="JavaScript">
+  function display(){
+  	
+	var tamanhoTotal = screen.width - 10;
+	
+	try{
+		var larg = document.getElementById('instructions'); 
+		var tamanho = larg.clientWidth + 250;
+		   if(larg.clientWidth < 850){
+		      tamanhoTotal = tamanhoAjustado + 'px';
+		   }else{
+		      tamanhoTotal = tamanho +'px';
+		   }
+	
+	 }catch(Error){}
+			
+	document.getElementById('banner_div').style.backgroundImage =  'url(imagem/backopenreports.png)';
+	document.getElementById('banner_div').style.height = '104px';	
+	document.getElementById('banner_div').style.backgroundRepeat = 'repeat-x';
+	
+	setaFocoNoPrimeiroCampoHabilitado();
+ }	
+
+  function setaFocoNoPrimeiroCampoHabilitado() {
+		var elementos = document.getElementsByTagName("*");
+		var tagName;
+		if (elementos!=null) {
+			for(var i = 0; i < elementos.length; i++) {	
+				tagName = elementos[i].tagName;
+				if (tagName == 'INPUT' || tagName == 'TEXTAREA' || tagName == 'SELECT') {
+					var type = elementos[i].type;
+				   	var disabled = elementos[i].disabled;
+				   	var readOnly = elementos[i].readOnly;
+				   	var autenticacaoPopup = elementos[i].name == 'cpfPopup' 
+				   			|| elementos[i].name == 'senhaPopup';
+				   	if(type != "hidden" && !disabled && !readOnly 
+				   			&& type != "button" && !autenticacaoPopup) {
+				    	elementos[i].focus();
+				    	break;
+				   	}
+				}
+			}
+		}
+	}
+</script>
+
+</head>
+
+<body background="imagem/fundoPagina-01.gif">
+<div class="titulo">
+<img src="imagem/openreports.png"/>
+<div class="link_trocar_menu"> &nbsp;&nbsp;Modulo Atual: Consultas
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="reportGroup1.action">Ir para Administracao</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="logout.action"> Sair</a>
+</div>
+</div>
+<br>
+<table width="80%">
+<tr>
+<td class="padding_topo">
+  
+<div class="padding_menu">
+<table class="item_menu" width="190px">
+  	<tr>
+	<td class="item_menu2"><a href="reportList.action?groupId=7">
+		EXEMPLOS BIRT
+	</a>
+	</td>
+	</tr>
+  	<tr>
+	<td class="item_menu2"><a href="reportList.action?groupId=6">
+		EXEMPLOS EXCEL
+	</a>
+	</td>
+	</tr>
+  	<tr>
+	<td class="item_menu2"><a href="reportList.action?groupId=1">
+		EXEMPLOS GR�FICOS
+	</a>
+	</td>
+	</tr>
+  	<tr>
+	<td class="item_menu2"><a href="reportList.action?groupId=5">
+		EXEMPLOS JASPER
+	</a>
+	</td>
+	</tr>
+  	<tr>
+	<td class="item_menu2"><a href="reportList.action?groupId=2">
+		EXEMPLOS SQL
+	</a>
+	</td>
+	</tr>
+  </table>
+</div>
+<br/>
+
+
+
+</td><td style="padding-left:20px; padding-top:0px; vertical-align:top;">
+
+
+
+
+
+
+
+
+
+  <div class="titulo_pagina" id="instructions">Orders By Date</div>  
+ 
+ <br/>
+ 
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js'></script>
+<script type='text/javascript'>
+$(function () {$('#container').highcharts({
+tooltip: {valueSuffix: 'C'},
+legend: {layout: 'vertical',
+align: 'right',verticalAlign: 'middle',
+borderWidth: 0},
+series: [{
+    name: 'Tokyo',
+    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+}, {
+    name: 'New York',
+    data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+}, {
+    name: 'Berlin',
+    data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+}],
+colors: ['#DDDF0D', '#7798BF', '#55BF3B', '#DF5353', '#aaeeee', '#ff0066', '#eeaaee','#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
+chart: {backgroundColor: {linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+stops: [[0, 'rgb(96, 96, 96)'],[1, 'rgb(16, 16, 16)']]},
+borderWidth: 0,borderRadius: 15,plotBackgroundColor: null,plotShadow: false,
+plotBorderWidth: 0},title: {text: 'Monthly Average Temperature',x: -20,
+style: {color: '#FFF',font: '16px Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif'}},
+subtitle: {text: 'Source: WorldClimate.com',x: -20,
+style: {color: '#DDD',font: '12px Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif'}},xAxis: {
+categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+gridLineWidth: 0,lineColor: '#999',tickColor: '#999',labels: {style: {color: '#999',fontWeight: 'bold'}},title: {
+style: {color: '#AAA',font: 'bold 12px Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif'}}},yAxis: {alternateGridColor: null,minorTickInterval: null,gridLineColor: 'rgba(255, 255, 255, .1)',minorGridLineColor: 'rgba(255,255,255,0.07)',lineWidth: 0,tickWidth: 0,labels: {style: {color: '#999',fontWeight: 'bold'}},title: {text: 'Temperature (C)',style: {color: '#AAA',font: 'bold 12px Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif'}}},legend: {itemStyle: {color: '#CCC'},itemHoverStyle: {color: '#FFF'},itemHiddenStyle: {color: '#333'}},labels: {style: {color: '#CCC'}},tooltip: {backgroundColor: {linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },stops: [[0, 'rgba(96, 96, 96, .8)'],[1, 'rgba(16, 16, 16, .8)']]},borderWidth: 0,style: {color: '#FFF'}},plotOptions: {series: {shadow: true},line: {dataLabels: {color: '#CCC'},marker: {lineColor: '#333'}},spline: {marker: {lineColor: '#333'}},scatter: {marker: {lineColor: '#333'}},candlestick: {lineColor: 'white'}},toolbar: {itemStyle: {color: '#CCC'}},navigation: {buttonOptions: {symbolStroke: '#DDDDDD',hoverSymbolStroke: '#FFFFFF',theme: {fill: {linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },stops: [[0.4, '#606060'],[0.6, '#333333']]},stroke: '#000000'}}},rangeSelector: {buttonTheme: {fill: {linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },stops: [[0.4, '#888'],[0.6, '#555']]},stroke: '#000000',style: {color: '#CCC',fontWeight: 'bold'},states: {hover: {fill: {linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },stops: [[0.4, '#BBB'],[0.6, '#888']]},stroke: '#000000',style: {color: 'white'}},select: {fill: {linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },stops: [[0.1, '#000'],[0.3, '#333']]},stroke: '#000000',style: {color: 'yellow'}}}},inputStyle: {backgroundColor: '#333',color: 'silver'},labelStyle: {color: 'silver'}},navigator: {handles: {backgroundColor: '#666',borderColor: '#AAA'},outlineColor: '#CCC',maskFill: 'rgba(16, 16, 16, 0.5)',series: {color: '#7798BF',lineColor: '#A6C7ED'}},scrollbar: {barBackgroundColor: {linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },stops: [[0.4, '#888'],[0.6, '#555']]},barBorderColor: '#CCC',buttonArrowColor: '#CCC',buttonBackgroundColor: {linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },stops: [[0.4, '#888'],[0.6, '#555']]},buttonBorderColor: '#CCC',rifleColor: '#FFF',trackBackgroundColor: {linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },stops: [[0, '#000'],[1, '#333']]},trackBorderColor: '#666'},legendBackgroundColor: 'rgba(48, 48, 48, 0.8)',legendBackgroundColorSolid: 'rgb(70, 70, 70)',dataLabelsColor: '#444',textColor: '#E0E0E0',maskColor: 'rgba(255,255,255,0.3)'});});
+</script><script src='highcharts/js/highcharts.js'></script>	
+<script src='highcharts/js/modules/exporting.js'></script>
+<div id='container' style='min-width: 310px; height: 400px; margin: 0 auto'></div>
+
+<br/>
+
+<br/>
+
+
+
+
+
+
+
+
+				    						    						    						    						    						    						    			
+<table style="width:75%;" class="displayTag_topo_bottom">
+<thead>
+<tr>
+<th class="sortable">
+<a href="/openreports/reportDetail.action?d-49653-s=0&amp;d-49653-o=2&amp;d-49653-p=1&amp;reportId=14">Descri��o</a></th>
+<th class="sortable">
+<a href="/openreports/reportDetail.action?d-49653-s=1&amp;d-49653-o=2&amp;d-49653-p=1&amp;reportId=14">Order Date</a></th>
+<th class="sortable">
+<a href="/openreports/reportDetail.action?d-49653-s=2&amp;d-49653-o=2&amp;d-49653-p=1&amp;reportId=14">Order Quantity</a></th></tr></thead>
+<tbody>
+<tr class="odd">
+<td>Compras</td>
+<td>11/05/2003 12:00 AM</td>
+<td style="text-align:right;">888,00</td></tr>
+<tr class="even">
+<td>Compras</td>
+<td>11/07/2003 12:00 AM</td>
+<td style="text-align:right;">377,00</td></tr>
+<tr class="odd">
+<td>Vendas</td>
+<td>11/04/2003 12:00 AM</td>
+<td style="text-align:right;">686,00</td></tr>
+<tr class="even">
+<td>Vendas</td>
+<td>11/05/2003 12:00 AM</td>
+<td style="text-align:right;">988,00</td></tr>
+<tr class="odd">
+<td>Vendas</td>
+<td>11/06/2003 12:00 AM</td>
+<td style="text-align:right;">1.077,00</td></tr>
+<tr class="even">
+<td>Vendas</td>
+<td>11/07/2003 12:00 AM</td>
+<td style="text-align:right;">477,00</td></tr>
+<tr class="odd">
+<td>Vendas</td>
+<td>11/08/2003 12:00 AM</td>
+<td style="text-align:right;">513,00</td></tr></tbody></table>
+  
+
+
+</td></tr>
+</table>
+<table width="100%" height="500px" background="white">
+<tbody><tr><td>&nbsp;</td></tr></tbody></table>
+</form>
+</body>
+</html>
+
+
+

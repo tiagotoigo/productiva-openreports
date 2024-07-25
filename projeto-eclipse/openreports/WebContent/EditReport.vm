@@ -1,0 +1,306 @@
+#parse("Banner.vm") 
+
+<script type="text/javascript">
+	dojo.require("dojo.widget.TabContainer");
+	dojo.require("dojo.widget.LinkPane");
+	dojo.require("dojo.widget.ContentPane");
+	dojo.require("dojo.widget.LayoutContainer");
+
+	function getForm() {
+		return document.forms[1];
+	}
+	function atualizarFiltro(idParametro) {
+		//alert(idParametro);
+		document.getElementById('idFiltroSelecionado').value = idParametro;
+		document.getElementById('metodo').value = 'atualizar';
+		getForm().submit();
+	}
+	function excluirFiltro(idParametro) {
+		document.getElementById('idFiltroSelecionado').value = idParametro;
+		document.getElementById('metodo').value = 'excluir';
+		getForm().submit();
+	}
+</script>
+
+
+  #parse("Errors.vm")
+  <form action="editReport.action" method="post">
+<div class="titulo_pagina" >
+		   #if ($command == "add")
+		   	Novo Relatório
+		   #end
+		   #if ($command != "add")
+		   	Relatório $name
+		   #end
+</div>
+
+  
+  <table class="tabela_detalhe">    
+    <tr>
+      <td class="boldText">Nome</td>
+      <td>
+      	&nbsp;
+      </td>
+      <td><input type="text" size="60" name="name" value="$!name"></td>
+    </tr>
+    <tr >
+      <td class="boldText">Descrição</td>
+      <td>
+      	&nbsp;
+      </td>
+      <td><input type="text" size="60" name="description" value="$!description"></td>
+    </tr>     
+    <tr >
+      <td class="boldText" width="20%">DataSource</td>
+      <td>
+      	&nbsp;
+      </td>
+      <td>
+        <select name="dataSourceId">
+          <option value="-1" SELECTED>Selecione</option>
+          #foreach ($dataSource in $dataSources)
+          <option value="$dataSource.id" #if ($dataSource.id == $dataSourceId) SELECTED #end >$dataSource.name</option>
+          #end
+        </select>        
+      </td>
+    </tr>       
+    <tr>
+      <td class="boldText">Query</td>
+      <td>
+      	<img  id="query" src="images/help.gif">
+      	<a dojoType="tooltip" connectId="query" href="tooltips/report-query.html" executeScripts="no"></a>         
+      </td>
+      <td>  	   
+        <textarea rows="6" cols="80" name="query">$!query</textarea>
+      </td>
+    </tr>     
+    <tr class="a">
+      <td class="boldText" width="20%">Gráfico/mapa</td>
+      <td>
+      	<img  id="chart" src="images/help.gif">
+      	<a dojoType="tooltip" connectId="chart" href="tooltips/report-chart.html" executeScripts="no"></a>         
+      </td>
+      <td>
+        <select name="reportChartId">
+          <option value="-1" SELECTED>Selecione</option>
+          #foreach ($reportChart in $reportCharts)
+          <option value="$reportChart.id" #if ($reportChart.id == $reportChartId) SELECTED #end >$reportChart.name</option>
+          #end
+        </select>
+      </td>
+    </tr>       
+    <tr class="b">
+      <td class="boldText">Arquivo de Relatório</td>
+      <td>
+      	<img  id="file" src="images/help.gif">
+      	<a dojoType="tooltip" connectId="file" href="tooltips/report-file.html" executeScripts="no"></a>         
+      </td>
+      <td>
+        <select name="file">
+          <option value="-1" SELECTED>Selecione</option>
+          #foreach ($fileName in $reportFileNames)
+          <option value="$fileName" #if ($fileName == $file) SELECTED #end >$fileName</option>
+          #end
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="boldText">Ocultar Relatório</td>
+      <td>
+      	<img  id="hidden" src="images/help.gif">
+      	<a dojoType="tooltip" connectId="hidden" href="tooltips/report-hidden.html" executeScripts="no"></a>         
+      </td>
+      <td>  
+      	<input type="checkbox" name="hidden" value="true" #if ($hidden == true) CHECKED #end>   	   
+      </td>
+    </tr>    
+    <tr>
+<!--  <td class="boldText">Usar Virtualização</td>
+      <td>
+      	<img  id="virtual" src="images/help.gif">
+      	<a dojoType="tooltip" connectId="virtual" href="tooltips/report-virtualization.html" executeScripts="no"></a>         
+      </td>
+      <td><input type="checkbox" name="virtual" value="true" #if ($virtual == true) CHECKED #end></td>
+    </tr>  -->
+    <tr class="b">
+      <td class="boldText">Tipos para Exportação</td>
+      <td>
+      	<img  id="export" src="images/help.gif">
+      	<a dojoType="tooltip" connectId="export" href="tooltips/report-export.html" executeScripts="no"></a>               	
+      </td>
+      <td>
+        <input type="checkbox" name="pdfExportEnabled" value="true" #if ($pdfExportEnabled == true) CHECKED #end> PDF 
+        <input type="checkbox" name="htmlExportEnabled" value="true" #if ($htmlExportEnabled == true) CHECKED #end> HTML
+        <input type="checkbox" name="csvExportEnabled" value="true" #if ($csvExportEnabled == true) CHECKED #end> CSV 
+        <input type="checkbox" name="xlsExportEnabled" value="true" #if ($xlsExportEnabled == true) CHECKED #end> XLS 
+        <input type="checkbox" name="rtfExportEnabled" value="true" #if ($rtfExportEnabled == true) CHECKED #end> RTF
+        <input type="checkbox" name="textExportEnabled" value="true" #if ($textExportEnabled == true) CHECKED #end> TEXT 
+        <input type="checkbox" name="excelExportEnabled" value="true" #if ($excelExportEnabled == true) CHECKED #end> EXCEL 
+      </td>
+      </tr>
+      <tr class="b">
+      <td colspan=2> <a href="/openreports/ExecuteReportTest.html"><font color="blue">Obter URL de publicação externa </font></a> </td>
+      </tr> 
+    
+    </table>
+
+	  
+    <input type="hidden" name="id" value="$!id">
+    <input type="hidden" name="command" value="$!command"></th>
+       <div align="center" class="barra_inferior" colspan="4">
+      	<input class="botao" type="submit" name="submitOk" value="Salvar">
+    </div> 
+    </form>
+    
+    <br>
+    
+   <br>
+    #if ($command != "add")    
+
+	 <div class="titulo_pagina">Adicionar Filtros</div>
+
+  <table class="tabela_detalhe">
+  	      <form action="editReportParameterMap.action">
+  	      <input type="hidden" name="idFiltroSelecionado" id="idFiltroSelecionado" >
+  	      <input type="hidden" name="metodo" id="metodo" >
+	
+    <tr>
+      <td colspan="2">Filtro</th>
+      <td>Obrigatório</th>     
+      <td>Passo</th>
+      <td>Ordem</th>
+      <td colspan="2">&nbsp;</th>
+    </tr>      
+    #foreach ($parameterInReport in $parametersInReport)
+
+    <tr class="a">   	 
+   	  <td colspan="2">
+   	    $parameterInReport.reportParameter.name
+   	  </td>       
+   	  <td>
+   	    <input type="checkbox" name="required" value="true" #if ($parameterInReport.required == true) CHECKED #end>   	   
+   	  </td>       	      	  
+   	  <td>
+   	    <input type="text" size="2" name="step" value="$parameterInReport.step">   	    
+   	  </td>  
+   	  <td>
+   	    <input type="text" size="2" name="sortOrder" value="$parameterInReport.sortOrder">   	    
+   	  </td>  
+   	  <td class="dialogButtons">
+   	  	<input class="botao" type="button" name="submitUpdate" value="Atualizar" onclick="atualizarFiltro('$parameterInReport.reportParameter.id');">
+   	  </td> 
+   	  <td class="dialogButtons">
+   	  	<input class="botao" type="button" name="submitDelete" value="Excluir" onclick="excluirFiltro('$parameterInReport.reportParameter.id');">
+   	  </td> 
+    </tr>   
+    <input type="hidden" name="id" value="$!id">
+    <input type="hidden" name="command" value="$!command"> 
+    <input type="hidden" name="reportParameterId" value="$parameterInReport.reportParameter.id"/>    
+    #end      
+	    </form>
+    <form action="editReportParameterMap.action"  >     
+    <tr class="a">
+      <td colspan="7"><hr></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <select name="reportParameterId">           
+          #foreach ($reportParameter in $reportParameters)
+            <option value="$reportParameter.id">$reportParameter.name
+          #end
+        </select>
+      </td>       
+    </tr>
+    <input type="hidden" name="id" value="$!id"> 
+  	<input type="hidden" name="command" value="$!command"> 
+    
+  </table>
+    	     <div class="barra_inferior" >        
+      	<input class="botao" type="submit" name="submitAdd" value="Incluir">
+      </td>             
+  	</form>
+	  </div>
+  
+  	  #end
+	  
+	  
+   
+    #if ($command != "add" && $report.jasperReport) 
+<!--    <div id="tab3" dojoType="ContentPane" label="JasperReports Export Options">
+      
+    <form action="editExportOptions.action">	 
+ 
+  <table class="dialog" >
+	<tr>	
+	  <th>
+	    Export Format
+	  </th>	
+	  <th colspan="2">
+	  	Export Option
+	  </th>	
+	  <th>
+	  	&nbsp;
+	  </th>	 
+	</tr>
+	<tr>
+	  <td align="center" class="label">XLS</td>
+      <td class="label" nowrap colspan="2" >Remover Espaços Vazios Entre as Linhas</td>
+      <td align="center" width="50px"><input type="checkbox" name="xlsRemoveEmptySpaceBetweenRows" value="true" #if ($report.reportExportOption.xlsRemoveEmptySpaceBetweenRows == true) CHECKED #end></td>
+    </tr>   
+    <tr>
+	  <td align="center" class="label">XLS</td>
+      <td class="label" nowrap colspan="2" >Fundo Branco</td>
+      <td align="center" width="50px"><input type="checkbox" name="xlsWhitePageBackground" value="true" #if ($report.reportExportOption.xlsWhitePageBackground == true) CHECKED #end></td>
+    </tr>  
+    <tr>
+      <td align="center" class="label">XLS</td>
+      <td class="label" nowrap colspan="2"  >Uma Página Por Folha</td>
+      <td align="center"><input type="checkbox" name="xlsOnePagePerSheet" value="true" #if ($report.reportExportOption.xlsOnePagePerSheet == true) CHECKED #end></td>
+    </tr>        
+    <tr>
+      <td align="center" class="label">XLS</td>
+      <td class="label" nowrap colspan="2"  >Detectar Tipo de Célula</td>
+      <td align="center"><input type="checkbox" name="xlsAutoDetectCellType" value="true" #if ($report.reportExportOption.xlsAutoDetectCellType == true) CHECKED #end></td>
+    </tr>  
+    <tr>
+	  <td align="center" class="label">HTML</td>
+      <td class="label" nowrap colspan="2" >Remover Espaços Vazios Entre as Linhas</td>
+      <td align="center" width="50px"><input type="checkbox" name="htmlRemoveEmptySpaceBetweenRows" value="true" #if ($report.reportExportOption.htmlRemoveEmptySpaceBetweenRows == true) CHECKED #end></td>
+    </tr>   
+    <tr>
+      <td align="center" class="label">HTML</td>
+      <td class="label" nowrap colspan="2"  >Fundo Branco</td>
+      <td align="center"><input type="checkbox" name="htmlWhitePageBackground" value="true" #if ($report.reportExportOption.htmlWhitePageBackground == true) CHECKED #end></td>
+    </tr>    
+    <tr>
+	  <td align="center" class="label">HTML</td>
+      <td class="label" nowrap colspan="2" >Usar Imagens Para Alinhar</td>
+      <td align="center" width="50px"><input type="checkbox" name="htmlUsingImagesToAlign" value="true" #if ($report.reportExportOption.htmlUsingImagesToAlign == true) CHECKED #end></td>
+    </tr>   
+    <tr>
+      <td align="center" class="label">HTML</td>
+      <td class="label" nowrap colspan="2"  >Encapsular Palavra de Quebra<BR/></td>
+      <td align="center"><input type="checkbox" name="htmlWrapBreakWord" value="true" #if ($report.reportExportOption.htmlWrapBreakWord == true) CHECKED #end></td>
+    </tr>    
+    <tr >
+      <td colspan="4"><hr></td>
+    </tr>  
+    <tr>
+      <td align="center" colspan="4" class="dialogButtons">
+		<input class="standardButton" type="submit" name="submitType" value="Salvar">		
+	  </td>
+    </tr>    
+   </table>
+   <input type="hidden" name="id" value="$!id">
+   <input type="hidden" name="command" value="$!command">    
+  </form>  
+   
+    </div>
+	-->
+    #end    
+
+	
+
+#parse("Footer.vm") 
+
+

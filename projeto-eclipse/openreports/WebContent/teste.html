@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+ 
+<script type="text/javascript">
+// Início do código de Aumentar/ Diminuir a letra
+ 
+// Para usar coloque o comando:
+// "javascript:mudaTamanho('tag_ou_id_alvo', -1);" para diminuir
+// e o comando "javascript:mudaTamanho('tag_ou_id_alvo', +1);" para aumentar
+ 
+var tagAlvo = new Array('div'); //pega todas as tags p//
+ 
+// Especificando os possíveis tamanhos de fontes, poderia ser: x-small, small...
+var tamanhos = new Array( '9px','10px','11px','12px','13px','14px','15px','16px','17px','30px' );
+var tamanhoInicial = 2;
+ 
+function mudaTamanho( idAlvo,acao ){
+if (!document.getElementById) return
+var selecionados = null,tamanho = tamanhoInicial,i,j,tagsAlvo;
+tamanho += acao;
+if ( tamanho < 0 ) tamanho = 0;
+if ( tamanho > 9 ) tamanho = 9;
+tamanhoInicial = tamanho;
+if ( !( selecionados = document.getElementById( idAlvo ) ) ) selecionados = document.getElementsByTagName( idAlvo )[ 0 ];
+ 
+selecionados.style.fontSize = tamanhos[ tamanho ];
+ 
+for ( i = 0; i < tagAlvo.length; i++ ){
+tagsAlvo = selecionados.getElementsByTagName( tagAlvo[ i ] );
+for ( j = 0; j < tagsAlvo.length; j++ ) tagsAlvo[ j ].style.fontSize = tamanhos[ tamanho ];
+}
+}
+// Fim do código de Aumentar/ Diminuir a letra
+ 
+</script>
+</head>
+ 
+<body>
+<a href="javascript:mudaTamanho('texto', -1);">Diminuir</a>
+<a href="javascript:mudaTamanho('texto', 1);">Aumentar</a>
+ 
+<div style="font-size: 11px;" id="texto">
+<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Curabitur  scelerisque purus ut pede. Ut pulvinar diam vitae tellus. Nunc  ultricies. Nam rhoncus justo vel dui. Morbi suscipit enim. Praesent dui  dui, tincidunt eget, feugiat vel, tincidunt vel, elit. Curabitur tempus  consequat nunc. Aliquam erat volutpat. Vivamus a massa non libero  posuere blandit. Nulla ut velit quis leo luctus tincidunt. Vestibulum  eget leo in augue ornare fringilla. Suspendisse suscipit dui. </p>
+<p>Nullam ultrices justo eget mi. Curabitur porta augue eget magna. Nam  imperdiet, ipsum eu aliquet interdum, justo ipsum pulvinar quam, quis  convallis mi sapien eu ante. Etiam ac sem. Ut bibendum. Nulla facilisi.  Vestibulum odio. Sed accumsan. Donec a dui. Cras lorem augue, egestas  vel, accumsan vel, elementum sit amet, nisl. Cras id dui. Sed nulla  ipsum, pulvinar et, suscipit a, vehicula eu, arcu. Fusce auctor nibh  eget risus. Vestibulum ante ipsum primis in faucibus orci luctus et  ultrices posuere cubilia Curae; Vestibulum vitae ante in odio dapibus  lobortis. </p>
+</div>
+<div style="background: -moz-linear-gradient(center top , #FAFAFA 50%, #F2F2F2) repeat scroll 0 0 transparent;">
+<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Curabitur  scelerisque purus ut pede. Ut pulvinar diam vitae tellus. Nunc  ultricies. Nam rhoncus justo vel dui. Morbi suscipit enim. Praesent dui  dui, tincidunt eget, feugiat vel, tincidunt vel, elit. Curabitur tempus  consequat nunc. Aliquam erat volutpat. Vivamus a massa non libero  posuere blandit. Nulla ut velit quis leo luctus tincidunt. Vestibulum  eget leo in augue ornare fringilla. Suspendisse suscipit dui. </p>
+<p>Nullam ultrices justo eget mi. Curabitur porta augue eget magna. Nam  imperdiet, ipsum eu aliquet interdum, justo ipsum pulvinar quam, quis  convallis mi sapien eu ante. Etiam ac sem. Ut bibendum. Nulla facilisi.  Vestibulum odio. Sed accumsan. Donec a dui. Cras lorem augue, egestas  vel, accumsan vel, elementum sit amet, nisl. Cras id dui. Sed nulla  ipsum, pulvinar et, suscipit a, vehicula eu, arcu. Fusce auctor nibh  eget risus. Vestibulum ante ipsum primis in faucibus orci luctus et  ultrices posuere cubilia Curae; Vestibulum vitae ante in odio dapibus  lobortis. </p>
+</div>
+</body>
+</html>

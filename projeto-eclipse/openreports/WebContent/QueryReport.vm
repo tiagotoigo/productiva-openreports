@@ -1,0 +1,41 @@
+#parse("Banner2.vm") 
+
+#if (!$report.displayInline)
+ 
+#end
+
+#parse("Errors.vm")
+  
+	#if (!$report.displayInline)
+     <div class="titulo_pagina" id="instructions">$report.name</div>     
+    #end
+
+$req.setAttribute("results", $results)
+<div class="tabela_detalhe3">
+#bodytag( Table "name=results" "class=displayTag2" "sort=list" "export=true" "pagesize=40" "size=5000")        
+ 	#foreach ($property in $properties) 		
+ 		#tag( Column "property=$property.name" "title=$property.displayName" "sortable=true" "headerClass=sortable" "decorator=$!property.decorator")  	     
+	#end	
+
+	#tag( SetProperty "name=export.pdf" "value=true")	
+	#tag( SetProperty "name=export.xml" "value=false")
+	#tag( SetProperty "name=export.pdf.filename" "value=${report.name}.pdf")
+	#tag( SetProperty "name=export.csv.filename" "value=${report.name}.csv")
+	#tag( SetProperty "name=export.excel.filename" "value=${report.name}.xls")
+		  
+#end
+
+#if (($user.scheduler) && ($results.isEmpty()==false))
+
+<div class="pagebanner">Agendar Relatório no formato: 
+<a href="reportOptions.action?reportId=$report.id&submitSchedule=true&exportType=0">PDF</a>
+ </div>
+#end   
+
+</div>
+<div class="barra_inferior">&nbsp;</div>
+#parse("Footer2.vm")
+
+
+
+	

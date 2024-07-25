@@ -1,0 +1,17 @@
+#parse("Banner.vm") 
+
+#parse("Errors.vm")
+
+<div class="titulo_pagina">DataSources</div>
+  	
+  $req.setAttribute("dataSourceNames", $dataSourceNames)
+
+  #bodytag( Table "name=dataSourceNames" "class=displayTag" "sort=list" "decorator=org.efs.openreports.util.HRefColumnDecorator")  	      
+    #tag( Column "property=name" "href=editDataSource.action?command=edit" "paramId=id" "paramProperty=id" "title=Nome" "sortable=true" "headerClass=sortable")    	     	      	     
+    #tag( Column "property=removeLink" "title=" "href=deleteDataSource.action" "paramId=id" "paramProperty=id")  	     	     		
+  #end   
+
+  <div class="button-bar">
+<input type="button" value="Novo" onclick="javascript:abre('editDataSource.action?command=add');" class="botao">&nbsp;</div>
+
+#parse("Footer.vm")

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="iso-8859-1">
+    <link href="css/consulta.css" rel="stylesheet" type="text/css" />
+    <style> #map-canvas { height: $altura ; width: $largura ; margin: 0px; padding: 0px } </style>
+	<style>.texto_mensagem{	font-family:Verdana, Geneva, Arial, Helvetica, sans-serif;	font-size:11px;	color:#666666;	font-weight:bold;	font-stretch:normal;}</style>
+<script type="text/javascript" src="js/jquery-1.3.2.js"></script>
+<script type="text/javascript" src="js/jquery.blockUI.js"></script>
+<script type="text/javascript" src="js/analise.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+  </head>
+
+<body >
+<div style="background-color: #FFFFFF;    background-image: url('imagem/backsigla2.jpg');    background-repeat: repeat-x;    color: #5C5C5C;    height: 104px;    padding: 0;    width: 100%;">
+<img src="imagem/back2.png"/>
+<div class="link_trocar_menu_consulta"> &nbsp;&nbsp;Módulo Atual: Consultas
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="reportGroup1.action">Ir para Administração</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="logout.action"> Sair</a>
+</div>
+</div>
+<br>
+<table width="80%">
+<tr>
+<td class="padding_topo">
+  
+<div class="padding_menu">
+<table class="item_menu" width="210px">
+  #foreach( $reportGroup in $req.getSession().getAttribute("listaDeGrupos") )
+	<tr>
+	<td width="20px"><img src="ico/relatorio.png"></td>
+	<td class="item_menu2"><a href="reportList.action?groupId=$reportGroup.id">
+		$reportGroup.upperName
+	</a>
+	</td>
+	</tr>
+  #end
+</table>
+</br>
+<a href="http://www.productiva.com.br">
+<table align="190px" class="item_menu2">
+  
+	<tbody><tr>
+	
+		<td style="vertical-align:middle">Powered by </td><td><img width="92" height="28" src="imagem/productiva_logo.png"></td>
+	
+	</tr>
+  
+</tbody></table></a>
+</div>
+<br/>
+
+
+
+</td><td style="padding-left:20px; padding-top:0px; vertical-align:top;">
+#if (!$report.displayInline)
+
+#end
+
+#parse("Errors.vm")
+
+
+ #if (!$report.displayInline)
+ <div style="padding:5px;">
+ <div class="titulo_pagina" id="instructions">$report.name</div>  
+ 
+ <br/>
+ #end
+
+$imageMap
+
+</td></tr>
+</table>
+<table width="100%" height="500px" >
+<tbody><tr><td>&nbsp;</td></tr></tbody></table>
+</form>
+</body>
+</html>
+

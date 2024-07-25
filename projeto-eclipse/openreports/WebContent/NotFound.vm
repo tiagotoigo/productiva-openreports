@@ -1,0 +1,29 @@
+#parse("Banner.vm") 
+
+<br/>
+
+<table align="left" width="90%">
+  <tr>
+    <td class="aviso">
+       
+		Arquivo n&atilde;o encontrado.
+		<br>    	 	
+		Entre em contato com seu administrador.
+    </td>      
+  </tr>
+    <tr>
+    <td class="aviso">
+       
+		<input class="standardButton" type="button" name="voltar" value="Voltar" onclick="history.back(-1);">
+    </td>      
+  </tr>
+  
+</table>
+
+<br>
+	
+  
+
+#parse("Footer.vm") 
+
+
