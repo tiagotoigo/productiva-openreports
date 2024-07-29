@@ -1,34 +1,30 @@
 =============================
-DISTRIBUIÇÃO GPL EM PORTUGUÊS
+DISTRIBUIÃ‡ÃƒO GPL EM PORTUGUÃŠS
 =============================
 
-    Este software é uma distribuição licenciada sob GPLv3, em 
-conformidade à licença do software original Open Reports 2.2, licenciada
-sob GPLv2. Nesta distribuição foram realizadas as seguintes alterações: 
-1.Tradução para o português;
-2.Divisão da aplicação web original em dois módulos: Módulo de 
-Administração e Módulo de Consultas;
-3.Novo padrão de interface do usuário.
-As alterações tem como objetivo tornar a tecnologia mais acessível entre 
-usuários de língua portuguesa.
-4.Inclusão de dois novos geradores de gráficos (FusionCharts
+    Este software Ã© uma distribuiÃ§Ã£o licenciada sob GPLv3, em 
+conformidade Ã  licenÃ§a do software original Open Reports 2.2, licenciada
+sob GPLv2. Nesta distribuiÃ§Ã£o foram realizadas as seguintes alteraÃ§Ãµes: 
+1.TraduÃ§Ã£o para o portuguÃªs;
+2.DivisÃ£o da aplicaÃ§Ã£o web original em dois mÃ³dulos: MÃ³dulo de 
+AdministraÃ§Ã£o e MÃ³dulo de Consultas;
+3.Novo padrÃ£o de interface do usuÃ¡rio.
+As alteraÃ§Ãµes tem como objetivo tornar a tecnologia mais acessÃ­vel entre 
+usuÃ¡rios de lÃ­ngua portuguesa.
+4.InclusÃ£o de dois novos geradores de grÃ¡ficos (FusionCharts
 e HighCharts)
-5.Inclusão de funcionalidade de geração de mapas (Googlemaps)
+5.InclusÃ£o de funcionalidade de geraÃ§Ã£o de mapas (Googlemaps)
 
-    A licença GPL exige que sejam feitos comentários proeminentes sobre 
-o que foi alterado em cada nova distribuição de um software livre. Para 
-tanto, as alterações de arquivos foram documentadas e os trechos de 
-códigos alterados do original foram identificados na pasta 
+    A licenÃ§a GPL exige que sejam feitos comentÃ¡rios proeminentes sobre 
+o que foi alterado em cada nova distribuiÃ§Ã£o de um software livre. Para 
+tanto, as alteraÃ§Ãµes de arquivos foram documentadas e os trechos de 
+cÃ³digos alterados do original foram identificados na pasta 
 "arquivos-productiva". 
 
-    As novas classes podem ser encontradas juntamente com o código-fonte
-no diretório (package) br.com.productiva.
+    As novas classes podem ser encontradas juntamente com o cÃ³digo-fonte
+no diretÃ³rio (package) br.com.productiva.
 
-    Documentação em português de apoio ao administrador e ao usuário do 
-OpenReports pode ser encontrada no site da Productiva 
-www.productiva.com.br, distribuidora desta versão.
-
-    Para maiores informações sobre o original acessse www.oreports.org.
+    Para maiores informaÃ§Ãµes sobre o original acessse www.oreports.org.
 	
 
 =============================
@@ -55,8 +51,6 @@ files were identified in the directory "arquivos-productiva".
 
     All new classes created by Productiva can be found within source code
 in directory (package) br.com.productiva.
-
-    Supporting document in portuguese can be found on Productiva's website.
 
     For more information about the original software visit www.oreports.org.
 
