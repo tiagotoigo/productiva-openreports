@@ -24,7 +24,7 @@ códigos alterados do original foram identificados na pasta
     As novas classes podem ser encontradas juntamente com o código-fonte
 no diretório (package) br.com.productiva.
 
-    Para maiores informações sobre o original acessse www.oreports.org.
+    Para maiores informações sobre o original acessse www.oreports.com.
 	
 
 =============================
@@ -52,6 +52,6 @@ files were identified in the directory "arquivos-productiva".
     All new classes created by Productiva can be found within source code
 in directory (package) br.com.productiva.
 
-    For more information about the original software visit www.oreports.org.
+    For more information about the original software visit www.oreports.com.
 
 
